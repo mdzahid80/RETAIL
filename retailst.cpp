@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;  
 
-class store
+class shopping
 {
 private:
     int model;
@@ -18,8 +18,12 @@ private:
     void edit();
     void list();
     void receipt();
-    void remove();
 };
+
+voivd shopping :: menu()
+
+
+
 
 int main()  
 {  
