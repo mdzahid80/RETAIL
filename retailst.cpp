@@ -86,7 +86,7 @@ void shopping :: administrator()
 {
   m:
   int choice;
-  cout<<"\n\n\n\t\t\t Administrator Menu";
+  cout<<"\n\n\n\t\t\t Administrator Menu\n";
   cout<<"\t\t\t\t___1) Add the Product\n";
   cout<<"\t\t\t\t                     \n";
   cout<<"\t\t\t\t___2) MOdify the Product\n";
@@ -222,7 +222,7 @@ void shopping :: edit()
   data.open("database.txt",ios::in);
   if(!data)
   {
-    cout<<"\n\nFile DOesn't exist!";
+    cout<<"\n\nFile Doesn't exist!";
   }
   else{
     data1.open("database.txt", ios::app|ios::out);
@@ -344,7 +344,7 @@ void shopping:: receipt()
     list();
     cout<<"______________________";
     cout<<"                      ";
-    cout<<"Place orde";
+    cout<<"Place order";
     cout<<"                      ";
     cout<<"______________________";
     do
@@ -383,7 +383,7 @@ void shopping:: receipt()
         amount=price*arrq[i];
         dis=amount-(amount*dis/100);
         total=total+dis;
-        cout<<"\n"<<pcode<<"\t\t"<<pname<<"\t\t"<<arrq[i]<<"\t\t"<<price<<"\t"<<amount<<"\t\t"<<dis;
+        cout<<"\n"<<"\t"<<pcode<<"\t\t\t"<<pname<<"\t\t\t"<<arrq[i]<<"\t\t"<<price<<"\t\t"<<amount<<"\t\t"<<dis;
       }
       data>>pcode>>pname>>price>>dis;
     }
