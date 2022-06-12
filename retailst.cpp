@@ -3,13 +3,13 @@
 
 using namespace std;  
 
-class shopping
+class retail
 {
 private:
-    int pcode;
-    float price;
-    float dis;
-    string pname;
+    int product_code;
+    float product_price;
+    float product_discount;
+    string product_name;
     
 
     public:
@@ -23,7 +23,7 @@ private:
     void receipt();
 };
 
-void shopping :: menu()
+void retail :: menu()
 {
   m:
   int choice;
@@ -40,7 +40,7 @@ void shopping :: menu()
    cout<<"\t\t\t\t               \n";
   cout<<"\t\t\t\t|1) Administrator\n";
    cout<<"\t\t\t\t________________\n";
-  cout<<"\t\t\t\t|2) Buyer\n";
+  cout<<"\t\t\t\t|2) Customer\n";
    cout<<"\t\t\t\t________________\n";
   cout<<"\t\t\t\t|3) Exit\n";
 
@@ -82,11 +82,11 @@ switch(choice)
 goto m;
 }
 
-void shopping :: administrator()
+void retail :: administrator()
 {
   m:
   int choice;
-  cout<<"\n\n\n\t\t\t Administrator Menu";
+  cout<<"\n\n\n\t\t\t Administrator Menu\n";
   cout<<"\t\t\t\t___1) Add the Product\n";
   cout<<"\t\t\t\t                     \n";
   cout<<"\t\t\t\t___2) MOdify the Product\n";
@@ -123,7 +123,7 @@ void shopping :: administrator()
 
 }
 
-void shopping :: buyer()
+void retail :: buyer()
 {
   m:
   int choice;
@@ -152,7 +152,7 @@ switch(choice)
 goto m;
 }
 
-void shopping :: add()
+void retail :: add()
 {
   m:
   fstream data;
@@ -164,26 +164,26 @@ void shopping :: add()
 
   cout<<"\n\n\n\t\t\t Add the product";
   cout<<"\n\n\t product code of the product";
-  cin>>pcode;
+  cin>>product_code;
   cout<<"\n\n\t name of the product";
-  cin>>pname;
-  cout<<"\n\n\t price of the product";
-  cin>>price;
-  cout<<"\n\n\t Discount on product";
-  cin>>dis;
+  cin>>product_name;
+  cout<<"\n\n\t product_price of the product";
+  cin>>product_price;
+  cout<<"\n\n\t discount on product";
+  cin>>product_discount;
 
   data.open("database.txt", ios::in);
   if(!data)
   {
     data.open("database.txt",ios::app| ios::out);
-    data<<" "<<pcode<<" "<<pname<<" "<<price<<" "<<dis<<"\n";
+    data<<" "<<product_code<<" "<<product_name<<" "<<product_price<<" "<<product_discount<<"\n";
     data.close();
   }
   else{
     data>>c>>n>>p>>d;
     while(!data.eof())
     {
-      if(c== pcode)
+      if(c== product_code)
       {
         token++;
       }
@@ -198,14 +198,14 @@ if (token==1)
 else
 {
 data.open("database.txt",ios::app|ios::out);
-data<<" "<<pcode<<" "<<pname<<" "<<price<<" "<<dis<<"\n";
+data<<" "<<product_code<<" "<<product_name<<" "<<product_price<<" "<<product_discount<<"\n";
 data.close();
 }
 
 cout<<"\n\n\t\t Record Inserted";
 }
 
-void shopping :: edit()
+void retail :: edit()
 {
   fstream data,data1;
   int pkey;
@@ -222,21 +222,21 @@ void shopping :: edit()
   data.open("database.txt",ios::in);
   if(!data)
   {
-    cout<<"\n\nFile DOesn't exist!";
+    cout<<"\n\nFile Doesn't exist!";
   }
   else{
     data1.open("database.txt", ios::app|ios::out);
 
-    data>>pcode>>pname>>price>>dis;
+    data>>product_code>>product_name>>product_price>>product_discount;
     while(!data.eof())
     {
-      if(pkey==pcode)
+      if(pkey==product_code)
       {
         cout<<"\n\t\t Product new code";
         cin>>c;
         cout<<"\n\t\t NAME Of the Produuct";
         cin>>n;
-        cout<<"\n\t\t Price";
+        cout<<"\n\t\t product_price";
         cin>>p;
         cout<<"\n\t\t discount ";
         cin>>d;
@@ -245,9 +245,9 @@ void shopping :: edit()
         token++;
       }
       else{
-        data1<<" "<<pcode<<" "<<pname<<" "<<price<<" "<<dis; 
+        data1<<" "<<product_code<<" "<<product_name<<" "<<product_price<<" "<<product_discount; 
       }
-      data>>pcode>>pname>>price>>dis;
+      data>>product_code>>product_name>>product_price>>product_discount;
     }
     data.close();
     data1.close();
@@ -261,7 +261,7 @@ void shopping :: edit()
   }
 }
 
-void shopping::rem()
+void retail::rem()
 {
   fstream data,data1;
   int pkey;
@@ -276,19 +276,19 @@ void shopping::rem()
   }
   else{
     data1.open("database1.txt",ios::app|ios::out);
-    data>>pcode>>pname>>price>>dis;
+    data>>product_code>>product_name>>product_price>>product_discount;
     while(!data.eof())
     {
-      if(pcode==pkey)
+      if(product_code==pkey)
       {
         cout<<"\n\n\t Product deleted succesfully";
         token++;
       }
       else
       {
-        data1<<" "<<pcode<<" "<<pname<<" "<<price<<" "<<dis<<"\n";
+        data1<<" "<<product_code<<" "<<product_name<<" "<<product_price<<" "<<product_discount<<"\n";
       }
-      data>>pcode>>pname>>price>>dis; 
+      data>>product_code>>product_name>>product_price>>product_discount; 
     }
     data.close();
     data1.close();
@@ -302,23 +302,23 @@ void shopping::rem()
   }
 }
 
-void shopping::list()
+void retail::list()
 {
   fstream data;
   data.open("database.txt",ios::in);
   cout<<"\n\n|_____________________________\n";
-  cout<<"ProNo\t\t NAME\t\t Price\n";
+  cout<<"ProNo\t\t NAME\t\t product_price\n";
   cout<<"\n\n______________________________\n";
-  data>>pcode>>pname>>price>>dis;
+  data>>product_code>>product_name>>product_price>>product_discount;
   while(!data.eof())
   {
-    cout<<pcode<<"\t\t"<<pname<<"\t\t"<<price<<"\n";
-    data>>pcode>>pname>>price>>dis;
+    cout<<product_code<<"\t\t"<<product_name<<"\t\t"<<product_price<<"\n";
+    data>>product_code>>product_name>>product_price>>product_discount;
   }
   data.close();
 }
 
-void shopping:: receipt()
+void retail:: receipt()
 {
   m:
   fstream data;
@@ -328,7 +328,7 @@ void shopping:: receipt()
   char choice;
   int c=0;
   float amount=0;
-  float dis=0;
+  float product_discount=0;
   float total=0;
 
   cout<<"\n\n\t\t\t\t RECEIPT";
@@ -344,7 +344,7 @@ void shopping:: receipt()
     list();
     cout<<"______________________";
     cout<<"                      ";
-    cout<<"Place orde";
+    cout<<"Place order";
     cout<<"                      ";
     cout<<"______________________";
     do
@@ -370,22 +370,22 @@ void shopping:: receipt()
   while(choice =='y');
 
   cout<<"\n\n\t\t\t______________RECEIPT___________\n";
-  cout<<"\n product no\t product name\t product quantity\tprice\tamount\tAmount with discount";
+  cout<<"\n product no\t product name\t product quantity\tproduct_price\tamount\tAmount with discount";
 
   for(int i=0;i<c;i++)
   {
     data.open("database.txt",ios::in);
-    data>>pcode>>pname>>price>>dis;
+    data>>product_code>>product_name>>product_price>>product_discount;
     while(!data.eof())
     {
-      if(pcode==arrc[i])
+      if(product_code==arrc[i])
       {
-        amount=price*arrq[i];
-        dis=amount-(amount*dis/100);
-        total=total+dis;
-        cout<<"\n"<<pcode<<"\t\t"<<pname<<"\t\t"<<arrq[i]<<"\t\t"<<price<<"\t"<<amount<<"\t\t"<<dis;
+        amount=product_price*arrq[i];
+        product_discount=amount-(amount*product_discount/100);
+        total=total+product_discount;
+        cout<<"\n"<<"\t"<<product_code<<"\t\t\t"<<product_name<<"\t\t\t"<<arrq[i]<<"\t\t"<<product_price<<"\t\t"<<amount<<"\t\t"<<product_discount;
       }
-      data>>pcode>>pname>>price>>dis;
+      data>>product_code>>product_name>>product_price>>product_discount;
     }
   }
   data.close();
@@ -397,7 +397,7 @@ cout<<"\n Total Amount :"<<total;
 
 int main()  
 {  
-   shopping s;
+   retail s;
    s.menu();
   return 0;  
 }  
